@@ -80,9 +80,6 @@ function display(text){
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if (request.text) {
         chrome.storage.local.get('openAIKey', function(data) {
-            if (!data.openAIKey) {
-                chrome.runtime.sendMessage({ action: 'openOptionsPage' });
-            }
             fetch('https://api.openai.com/v1/chat/completions', {
                 method: 'POST',
                 headers: {
