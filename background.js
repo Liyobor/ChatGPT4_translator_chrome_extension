@@ -1,7 +1,7 @@
 chrome.runtime.onInstalled.addListener(function() {
     chrome.contextMenus.create({
         id: "sendTextToAPI",
-        title: "Send Text to API",
+        title: "將所選內容用ChatGPT4翻譯成中文",
         contexts: ["selection"]
     });
 });

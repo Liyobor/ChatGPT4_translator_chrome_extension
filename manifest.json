@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Chat GPT4-turbo translator for mandarin",
   "version": "1.0",
-  "permissions": ["activeTab", "contextMenus","background","storage"],
+  "permissions": ["activeTab", "contextMenus","storage"],
   "options_page": "options.html",
   "background": {
     "service_worker": "background.js"

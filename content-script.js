@@ -6,7 +6,7 @@ function display(text){
     if (floatWindow) {
         var content = floatWindow.querySelector("div");
         content.textContent = text;
-        
+    
     } else {
         var floatWindow = document.createElement("div");
         floatWindow.setAttribute("id", "customFloatWindow");
@@ -36,21 +36,17 @@ function display(text){
         };
         var isDragging = false;
         var startX, startY;
-
-
         floatWindow.appendChild(closeButton);
         var content = document.createElement("div");
         content.style.fontSize = "16px";
         content.style.fontFamily = "SimSun, '宋体'";
-        content.style.fontWeight = "bold"; // 設定文字加粗
+        content.style.fontWeight = "bold";
         content.textContent = text; 
         floatWindow.appendChild(content);
 
         floatWindow.addEventListener('mousedown', function(e) {
-            // 獲取點擊位置與浮動視窗頂部的距離
             var clickY = e.clientY - floatWindow.offsetTop;
         
-            // 判斷點擊位置是否在頂部20px範圍內
             if (clickY >= 0 && clickY <= 20) {
                 isDragging = true;
                 startX = e.clientX - floatWindow.offsetLeft;
@@ -83,12 +79,10 @@ function display(text){
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if (request.text) {
-        
         chrome.storage.local.get('openAIKey', function(data) {
             if (!data.openAIKey) {
                 chrome.runtime.sendMessage({ action: 'openOptionsPage' });
             }
-            
             fetch('https://api.openai.com/v1/chat/completions', {
                 method: 'POST',
                 headers: {
@@ -128,7 +122,5 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
             
             // .catch(error => console.error('Error:'+error));
         });
-        // display(request.text);
-
     }
 });
