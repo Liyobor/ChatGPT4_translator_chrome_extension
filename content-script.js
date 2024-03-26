@@ -8,20 +8,24 @@ function display(text){
         content.textContent = text;
     
     } else {
-        var floatWindow = document.createElement("div");
+        floatWindow = document.createElement("div");
         floatWindow.setAttribute("id", "customFloatWindow");
         floatWindow.style.position = "fixed";
         floatWindow.style.top = "20px";
-        floatWindow.style.width = "250px"; 
-        floatWindow.style.height = "150px";
         floatWindow.style.right = "20px";
         floatWindow.style.padding = "30px";
         floatWindow.style.backgroundColor = "white";
-        floatWindow.style.color = "black"; 
+        floatWindow.style.color = "black";
         floatWindow.style.border = "1px solid #ccc";
         floatWindow.style.boxShadow = "0px 0px 5px rgba(0,0,0,0.3)";
         floatWindow.style.borderRadius = "20px";
-        floatWindow.style.zIndex = "10000"; 
+        floatWindow.style.zIndex = "10000";
+
+        floatWindow.style.maxWidth = "250px";
+        floatWindow.style.minHeight = "100px";
+        floatWindow.style.overflow = "hidden"; 
+        floatWindow.style.resize = "both";
+
         var closeButton = document.createElement("button");
         closeButton.textContent = "X";
         closeButton.style.position = "absolute";
@@ -38,9 +42,11 @@ function display(text){
         var startX, startY;
         floatWindow.appendChild(closeButton);
         var content = document.createElement("div");
+        
         content.style.fontSize = "16px";
         content.style.fontFamily = "SimSun, '宋体'";
         content.style.fontWeight = "bold";
+        content.style.overflowWrap = "break-word"; // 允許自動換行
         content.textContent = text; 
         floatWindow.appendChild(content);
 
@@ -74,6 +80,7 @@ function display(text){
         document.body.appendChild(floatWindow);
     }
 }
+
 
 
 
