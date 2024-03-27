@@ -105,9 +105,9 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
                         "content": request.text
                     }
                     ],
-                    "temperature": 1,
+                    "temperature": 0.3,
                     "max_tokens": 512,
-                    "top_p": 1,
+                    "top_p": 0.8,
                     "frequency_penalty": 0,
                     "presence_penalty": 0
                 }),
