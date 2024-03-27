@@ -106,7 +106,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
                     }
                     ],
                     "temperature": 1,
-                    "max_tokens": 256,
+                    "max_tokens": 512,
                     "top_p": 1,
                     "frequency_penalty": 0,
                     "presence_penalty": 0
