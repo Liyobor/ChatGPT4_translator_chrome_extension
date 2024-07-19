@@ -94,7 +94,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
                     "Authorization": `Bearer ${data.openAIKey}`
                 },
                 body: JSON.stringify({
-                    "model": "gpt-4o",
+                    "model": "gpt-4o-mini",
                     "messages": [
                     {
                         "role": "system",
