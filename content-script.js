@@ -96,21 +96,40 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
                 body: JSON.stringify({
                     "model": "gpt-4o-mini",
                     "messages": [
-                    {
+                      {
                         "role": "system",
                         "content": "The user will send a piece of text. Please translate it into Traditional Chinese and return it. Keep proper nouns in their original language."
-                    },
-                    {
-                        "role": "user",
-                        "content": request.text
-                    }
+                      },
+                      {
+                        "role":"user",
+                        "content":request.text
+                      }
                     ],
                     "temperature": 0.3,
                     "max_tokens": 768,
                     "top_p": 0.8,
                     "frequency_penalty": 0,
-                    "presence_penalty": 0
-                }),
+                    "presence_penalty": 0,
+                    "response_format": {
+                      "type": "json_schema",
+                      "json_schema": {
+                        "name": "text_translate",
+                        "strict": true,
+                        "schema": {
+                          "type": "object",
+                          "properties": {
+                            "translated": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "translated"
+                          ],
+                          "additionalProperties": false
+                        }
+                      }
+                    }
+                  }),
             })
             .then(response => {
                 if(response.status==401){
@@ -119,7 +138,13 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
                     response.json().then(data => {
         
                         const messageContent = data.choices[0].message.content;
-                        display(messageContent)
+                        try {
+                            const parsedContent = JSON.parse(messageContent);
+                            const translatedText = parsedContent.translated;
+                            display(translatedText);
+                        } catch (error) {
+                            display("error : ",error);
+                        }
                     })
                 }
             })
