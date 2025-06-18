@@ -84,6 +84,7 @@ function display(text){
 
 
 
+
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if (request.text) {
         chrome.storage.local.get('openAIKey', function(data) {
@@ -94,7 +95,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
                     "Authorization": `Bearer ${data.openAIKey}`
                 },
                 body: JSON.stringify({
-                    "model": "gpt-4o-mini",
+                    "model": "gpt-4.1-nano",
                     "messages": [
                       {
                         "role": "system",
